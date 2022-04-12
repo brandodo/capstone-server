@@ -14,7 +14,7 @@ const knex = require("knex")(require("./knexfile.js").development);
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-require("dovenv").config();
+require("dotenv").config();
 
 app.use(express.json());
 app.use(helmet());
@@ -33,3 +33,7 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+app.listen(PORT, () => {
+  console.log("Server initialized 🚀");
+});

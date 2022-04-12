@@ -3,19 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon server.js",
     "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "helmet": "^5.0.2",
     "knex": "^1.0.5",
+    "mysql": "^2.18.1",
     "passport": "^0.5.2",
     "passport-spotify": "^2.0.0"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
