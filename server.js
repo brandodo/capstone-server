@@ -12,9 +12,9 @@ const SpotifyStrategy = require("passport-spotify").Strategy;
 const knex = require("knex")(require("./knexfile.js").development);
 
 const app = express();
-const PORT = process.env.PORT || 8080;
 
 require("dotenv").config();
+const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(helmet());
@@ -34,6 +34,68 @@ app.use(
   })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(
+  new SpotifyStrategy(
+    {
+      clientID: process.env.SPOTIFY_CLIENT_ID,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+      callbackURL: process.env.SPOTIFY_REDIRECT_URL,
+    },
+    (accessToken, refreshToken, expires_in, profile, done) => {
+      knex("users")
+        .select("id")
+        .where({ spotify_id: profile.id })
+        .then((user) => {
+          if (user.length) {
+            done(null, user[0]);
+          } else {
+            knex("users")
+              .insert({
+                spotify_id: profile.id,
+                photo: profile.photos[0].value,
+                username: profile.username,
+                display_name: profile.displayName,
+                country: profile.country,
+                access_token: accessToken,
+                refresh_token: refreshToken,
+                expires_in: expires_in,
+              })
+              .then((userId) => {
+                done(null, { id: userId[0] });
+              })
+              .catch((err) => {
+                console.log("Error creating a user", err);
+              });
+          }
+        });
+    }
+  )
+);
+
+passport.serializeUser((user, done) => {
+  console.log("serializeUser (user object):", user);
+
+  // Store only the user id in session
+  done(null, user.id);
+});
+
+passport.deserializeUser((userId, done) => {
+  knex("users")
+    .where({ id: userId })
+    .then((user) => {
+      done(null, user[0]);
+    })
+    .catch((err) => {
+      console.log("Error finding user", err);
+    });
+});
+const authRoutes = require("./routes/auth");
+
+app.use("/auth", authRoutes);
+
 app.listen(PORT, () => {
-  console.log("Server initialized 🚀");
+  console.log(`Server initialized on port ${PORT} 🚀`);
 });
