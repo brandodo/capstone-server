@@ -1,16 +1,10 @@
 const express = require("express");
-
 const expressSession = require("express-session");
-
 const cors = require("cors");
-
 const helmet = require("helmet");
-
 const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
-
 const knex = require("knex")(require("./knexfile.js").development);
-
 const app = express();
 
 require("dotenv").config();
@@ -92,6 +86,7 @@ passport.deserializeUser((userId, done) => {
       console.log("Error finding user", err);
     });
 });
+
 const authRoutes = require("./routes/auth");
 
 app.use("/auth", authRoutes);
