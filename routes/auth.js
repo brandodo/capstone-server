@@ -42,34 +42,38 @@ router.get("/profile", (req, res) => {
 });
 
 router.get("/refresh", (req, res) => {
-  const { refresh_token } = req.user;
-  const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-  const buffer = Buffer.from(`${clientId}:${clientSecret}`);
-  const secretIdBase64 = buffer.toString("base64");
+  if (!req.user) {
+    res.status(401).send("No refresh token provided");
+  } else {
+    const { refresh_token } = req.user;
+    const clientId = process.env.SPOTIFY_CLIENT_ID;
+    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+    const buffer = Buffer.from(`${clientId}:${clientSecret}`);
+    const secretIdBase64 = buffer.toString("base64");
 
-  const params = new URLSearchParams();
-  params.append("grant_type", "refresh_token");
-  params.append("refresh_token", refresh_token);
+    const params = new URLSearchParams();
+    params.append("grant_type", "refresh_token");
+    params.append("refresh_token", refresh_token);
 
-  axios
-    .post(`${SPOTIFY_REFRESH_URL}`, params, {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${secretIdBase64}`,
-      },
-    })
-    .then((response) => {
-      knex("users")
-        .update({ access_token: response.data.access_token })
-        .where({ id: req.user.id })
-        .then(() => {
-          res.json(response.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
+    axios
+      .post(`${SPOTIFY_REFRESH_URL}`, params, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Basic ${secretIdBase64}`,
+        },
+      })
+      .then((response) => {
+        knex("users")
+          .update({ access_token: response.data.access_token })
+          .where({ spotify_id: req.user.spotify_id })
+          .then(() => {
+            res.json(response.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+  }
 });
 
 module.exports = router;

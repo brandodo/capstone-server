@@ -23,7 +23,7 @@ app.use(
 app.use(
   expressSession({
     secret: process.env.SESSION_SECRET,
-    resave: false,  
+    resave: false,
     saveUninitialized: true,
   })
 );
@@ -40,7 +40,7 @@ passport.use(
     },
     (accessToken, refreshToken, expires_in, profile, done) => {
       knex("users")
-        .select("id")
+        .select("spotify_id")
         .where({ spotify_id: profile.id })
         .then((user) => {
           if (user.length) {
@@ -58,7 +58,7 @@ passport.use(
                 expires_in: expires_in,
               })
               .then((userId) => {
-                done(null, { id: userId[0] });
+                done(null, { spotify_id: userId[0] });
               })
               .catch((err) => {
                 console.log("Error creating a user", err);
@@ -72,13 +72,12 @@ passport.use(
 passport.serializeUser((user, done) => {
   console.log("serializeUser (user object):", user);
 
-  // Store only the user id in session
-  done(null, user.id);
+  done(null, user.spotify_id);
 });
 
 passport.deserializeUser((userId, done) => {
   knex("users")
-    .where({ id: userId })
+    .where({ spotify_id: userId })
     .then((user) => {
       done(null, user[0]);
     })
@@ -88,8 +87,10 @@ passport.deserializeUser((userId, done) => {
 });
 
 const authRoutes = require("./routes/auth");
+const scoreRoute = require("./routes/score");
 
 app.use("/auth", authRoutes);
+app.use("/score", scoreRoute);
 
 app.listen(PORT, () => {
   console.log(`Server initialized on port ${PORT} 🚀`);

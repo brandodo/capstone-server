@@ -1,7 +1,6 @@
 exports.up = function (knex) {
   return knex.schema.createTable("users", (table) => {
-    table.increments("id").primary();
-    table.string("spotify_id").notNullable();
+    table.string("spotify_id").primary();
     table.string("photo").notNullable();
     table.string("username").notNullable();
     table.string("display_name").notNullable();
