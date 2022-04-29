@@ -17,7 +17,7 @@ app.use(
     directives: {
       connectSrc: [
         "'self'",
-        "'https://stats.g.doubleclick.net/j/collect?t=dc&aip=1&_r=3&v=1&_v=j96&tid=UA-5784146-31&cid=1621880410.1611552505&jid=1487827398&gjid=2043681754&_gid=1987416524.1650598599&_u=QCCAiEABBAAAAE~&z=1253668311'",
+        "'https://stats.g.doubleclick.net/j/*'",
         "'https://*.spotify.com'",
         "'https://www.google-analytics.com'",
         "'https://*.ingest.sentry.io/'",
