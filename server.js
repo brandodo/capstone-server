@@ -17,10 +17,10 @@ app.use(
     directives: {
       connectSrc: [
         "'self'",
-        "'https://stats.g.doubleclick.net/j/*'",
-        "'https://*.spotify.com'",
-        "'https://www.google-analytics.com'",
-        "'https://*.ingest.sentry.io/'",
+        "https://stats.g.doubleclick.net/j/*",
+        "https://*.spotify.com",
+        "https://www.google-analytics.com",
+        "https://*.ingest.sentry.io/",
       ],
     },
   })
