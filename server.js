@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      "connect-src": [
+      connectSrc: [
         "'self'",
         "https://*.spotify.com",
         "https://www.google-analytics.com",
