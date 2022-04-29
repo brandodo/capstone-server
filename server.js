@@ -15,7 +15,7 @@ app.use(helmet());
 
 app.use(
   cors({
-    origin: true,
+    origin: "https://aim-beats-game.herokuapp.com",
     credentials: true,
     methods: ["GET", "PUT", "POST"],
     allowedHeaders: [
