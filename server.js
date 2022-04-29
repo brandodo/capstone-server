@@ -8,7 +8,7 @@ const knex = require("knex")(require("./knexfile.js").development);
 const app = express();
 
 require("dotenv").config();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 80;
 
 app.use(express.json());
 app.use(helmet());
