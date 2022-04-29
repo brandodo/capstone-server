@@ -11,7 +11,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 80;
 
 app.use(express.json());
-app.use(helmet());
+
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
