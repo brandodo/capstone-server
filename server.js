@@ -14,10 +14,11 @@ app.use(express.json());
 
 app.use(
   helmet.contentSecurityPolicy({
+    useDefaults: true,
     directives: {
       connectSrc: [
         "'self'",
-        "https://stats.g.doubleclick.net/j/*",
+        "https://*.*.doubleclick.net/*",
         "https://*.spotify.com",
         "https://www.google-analytics.com",
         "https://*.ingest.sentry.io/",
