@@ -4,7 +4,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
-const knex = require("knex")(require("./knexfile.js").development);
+const knex = require("knex")(require("./knexfile.js"));
 const app = express();
 
 require("dotenv").config();

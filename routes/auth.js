@@ -3,7 +3,7 @@ const router = express.Router();
 
 const passport = require("passport");
 const axios = require("axios");
-const knex = require("knex")(require("../knexfile.js").development);
+const knex = require("knex")(require("../knexfile.js"));
 const SPOTIFY_REFRESH_URL = "https://accounts.spotify.com/api/token";
 
 require("dotenv").config();
