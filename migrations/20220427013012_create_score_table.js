@@ -5,6 +5,7 @@ exports.up = function (knex) {
     table.string("song").notNullable();
     table.string("artist").notNullable();
     table.integer("score").notNullable();
+    table.integer("max_combo").notNullable();
     table.timestamp("updated_at").defaultTo(knex.fn.now());
     table
       .foreign("player_id")

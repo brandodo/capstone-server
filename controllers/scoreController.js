@@ -1,13 +1,12 @@
 const knex = require("knex")(require("../knexfile.js").development);
 
 exports.postScore = (req, res) => {
-  console.log(req);
-
   if (
     !req.body.player_id ||
     !req.body.song ||
     !req.body.artist ||
-    !req.body.score
+    !req.body.score ||
+    !req.body.max_combo
   ) {
     return res
       .status(400)
