@@ -11,21 +11,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 80;
 
 app.use(express.json());
-
-app.use(
-  helmet.contentSecurityPolicy({
-    useDefaults: true,
-    directives: {
-      connectSrc: [
-        "'self'",
-        "https://*.*.doubleclick.net/*",
-        "https://*.spotify.com",
-        "https://www.google-analytics.com",
-        "https://*.ingest.sentry.io/",
-      ],
-    },
-  })
-);
+app.use(helmet());
 
 app.use(
   cors({
