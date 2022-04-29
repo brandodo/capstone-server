@@ -13,13 +13,14 @@ const PORT = process.env.PORT || 80;
 app.use(express.json());
 app.use(
   helmet.contentSecurityPolicy({
+    useDefaults: true,
     directives: {
-      connectSrc: [
+      defaultSrc: [
         "'self'",
         "https://*.spotify.com",
         "https://www.google-analytics.com",
         "https://*.ingest.sentry.io/",
-        "https://stats.g.doubleclick.net/j/*",
+        "https://stats.g.doubleclick.net/j/collect?*",
       ],
     },
   })
