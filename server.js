@@ -11,36 +11,12 @@ require("dotenv").config();
 const PORT = process.env.PORT || 80;
 
 app.use(express.json());
-app.use(
-  helmet.contentSecurityPolicy({
-    useDefaults: true,
-    directives: {
-      defaultSrc: [
-        "'self'",
-        "https://*.spotify.com",
-        "https://www.google-analytics.com",
-        "https://*.ingest.sentry.io/",
-        "https://stats.g.doubleclick.net/j/collect?*",
-      ],
-    },
-  })
-);
+app.use(helmet());
 
 app.use(
   cors({
-    origin: [
-      "https://aim-beats-game.herokuapp.com",
-      "https://aim-beats-game.herokuapp.com/",
-    ],
+    origin: true,
     credentials: true,
-    methods: ["GET", "PUT", "POST"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Origin",
-      "X-Requested-With",
-      "Accept",
-    ],
   })
 );
 
