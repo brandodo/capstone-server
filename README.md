@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Setup Instructions
 
-You will need to create and configure a .env file of your own in order to run this app. Please refer to the sample.env on how that should look. You will also need to clone the client repo, which can be found <a href="https://github.com/brandodo/capstone-client">here</a>
+You will need to create and configure a .env file of your own in order to run this app. Please refer to the sample.env on how that should look. You will also need to clone the server repo, which can be found <a href="https://github.com/brandodo/capstone-server">here</a>
 
 ## Project Overview
 
@@ -18,7 +18,7 @@ A circle clicking rhythm game where users can test their dexterity while enjoyin
 
 ## 1.2 Problem
 
-**aimBeats** gives the casual music listener an easy to learn and personalized music listening and gaming experience, which puts their dexterity to the test. The game was inspired by both Osu! - a popular online rhythm clicking game - along with Aim Labs - a online game/workshop that assist FPS (first person shooter) gamers improve their aim. **aimBeats** is a mix of the two in that users will be able to search and select songs they enjoy listening to and test their hand-eye coordination in clicking the circles that randomly appear to the beat of the music.
+**aimBeats** gives the casual music listener an easy to learn and personalized music listening and gaming experience, which puts their dexterity to the test. The game was inspired by both Osu! - a popular online rhythm clicking game, and with Aim Labs - an online game/workshop that assist FPS (first person shooter) gamers improve their aim. **aimBeats** is a mix of the two in that users will be able to search and select songs they enjoy listening to and test their hand-eye coordination in clicking the circles that randomly appear to the beat of the music.
 
 ## 1.3 User Profile
 
