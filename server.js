@@ -5,8 +5,8 @@ const helmet = require("helmet");
 const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const knex = require("knex")(require("./knexfile.js"));
+const knexSessionStore = require("connect-session-knex")(expressSession);
 const app = express();
-const crypto = require("crypto");
 
 require("dotenv").config();
 const PORT = process.env.PORT || 80;
@@ -21,11 +21,22 @@ app.use(
   })
 );
 
+const sessionOptions = {
+  store: new knexSessionStore({
+    knex: knex,
+    tablename: "sessions",
+    sidfieldname: "sid",
+    createtable: true,
+    clearInterval: 31556952000,
+  }),
+};
+
 app.use(
   expressSession({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: sessionOptions.store,
   })
 );
 
@@ -89,6 +100,7 @@ passport.deserializeUser((userId, done) => {
 
 const authRoutes = require("./routes/auth");
 const scoreRoute = require("./routes/score");
+const { session } = require("passport");
 
 app.use("/auth", authRoutes);
 app.use("/score", scoreRoute);
