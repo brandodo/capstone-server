@@ -6,6 +6,7 @@ const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const knex = require("knex")(require("./knexfile.js"));
 const app = express();
+const crypto = require("crypto");
 
 require("dotenv").config();
 const PORT = process.env.PORT || 80;
@@ -22,7 +23,9 @@ app.use(
 
 app.use(
   expressSession({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET
+      ? process.env.SESSION_SECRET
+      : crypto.randomBytes(32).toString("hex"),
     resave: false,
     saveUninitialized: true,
   })
