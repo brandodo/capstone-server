@@ -27,7 +27,7 @@ const sessionOptions = {
     tablename: "sessions",
     sidfieldname: "sid",
     createtable: true,
-    clearInterval: 31556952000,
+    clearInterval: 1000 * 60 * 60,
   }),
 };
 
@@ -100,7 +100,6 @@ passport.deserializeUser((userId, done) => {
 
 const authRoutes = require("./routes/auth");
 const scoreRoute = require("./routes/score");
-const { session } = require("passport");
 
 app.use("/auth", authRoutes);
 app.use("/score", scoreRoute);

@@ -35,9 +35,11 @@ router.get(
 );
 
 router.get("/profile", (req, res) => {
-  if (req.user === undefined)
+  console.log(req);
+  if (req.user === undefined) {
+    console.log("profile hit: " + req);
     return res.status(401).json({ message: "Unauthorized" });
-
+  }
   res.status(200).json(req.user);
 });
 
