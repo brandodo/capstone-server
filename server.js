@@ -23,10 +23,7 @@ app.use(
 
 app.use(
   expressSession({
-    secret:
-      process.env.NODE_ENV === "production"
-        ? crypto.randomBytes(32).toString("hex")
-        : process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
   })
