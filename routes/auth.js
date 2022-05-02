@@ -36,6 +36,8 @@ router.get(
 );
 
 router.get("/profile", (req, res) => {
+  console.log(req.user);
+
   if (req.user === undefined) {
     return res.status(401).json({ message: "Unauthorized" });
   }
