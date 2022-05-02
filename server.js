@@ -91,6 +91,7 @@ passport.deserializeUser((userId, done) => {
   knex("users")
     .where({ spotify_id: userId })
     .then((user) => {
+      console.log(user);
       done(null, user[0]);
     })
     .catch((err) => {

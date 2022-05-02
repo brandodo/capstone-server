@@ -79,6 +79,7 @@ router.get("/refresh", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
+  delete req.user;
 
   res.redirect(process.env.CLIENT_URL);
 });
