@@ -19,6 +19,7 @@ router.get(
       "user-library-modify",
       "user-read-playback-state",
       "user-modify-playback-state",
+      "user-read-currently-playing",
     ],
     showDialog: true,
   })
@@ -35,9 +36,7 @@ router.get(
 );
 
 router.get("/profile", (req, res) => {
-  console.log(req);
   if (req.user === undefined) {
-    console.log("profile hit: " + req);
     return res.status(401).json({ message: "Unauthorized" });
   }
   res.status(200).json(req.user);
