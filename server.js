@@ -37,11 +37,6 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: sessionOptions.store,
-    cookie: {
-      sameSite: "none",
-      secure: true,
-      httpOnly: false,
-    },
   })
 );
 
