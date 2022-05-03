@@ -39,7 +39,7 @@ app.use(
     store: sessionOptions.store,
     cookie: {
       sameSite: "none",
-      secure: "auto",
+      secure: true,
     },
   })
 );
