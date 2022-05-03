@@ -59,8 +59,8 @@ passport.use(
             knex("users")
               .update({ access_token: accessToken })
               .where({ spotify_id: profile.id })
-              .then((userNew) => {
-                done(null, userNew[0]);
+              .then(() => {
+                done(null, user[0]);
               })
               .catch((err) => {
                 console.log("Error occurred: " + err);
