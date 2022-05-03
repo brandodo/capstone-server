@@ -38,7 +38,7 @@ app.use(
     saveUninitialized: true,
     store: sessionOptions.store,
     cookie: {
-      sameSite: "strict",
+      sameSite: "none",
     },
   })
 );
