@@ -56,7 +56,16 @@ passport.use(
         .where({ spotify_id: profile.id })
         .then((user) => {
           if (user.length) {
-            done(null, user[0]);
+            console.log(user, user[0]);
+            knex("users")
+              .update({ access_token: accessToken })
+              .where({ spotify_id: profile.id })
+              .then(() => {
+                done(null, user[0]);
+              })
+              .catch((err) => {
+                console.log("Error occurred: " + err);
+              });
           } else {
             knex("users")
               .insert({
