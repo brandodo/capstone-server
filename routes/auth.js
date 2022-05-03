@@ -25,9 +25,13 @@ router.get(
   })
 );
 
-router.get("/spotify/callback", (_req, res) => {
-  res.redirect(process.env.CLIENT_URL);
-});
+router.get(
+  "/spotify/callback",
+  passport.authenticate("spotify", { failureRedirect: process.env.CLIENT_URL }),
+  (_req, res) => {
+    res.redirect(process.env.CLIENT_URL);
+  }
+);
 
 router.get("/profile", (req, res) => {
   if (req.user === undefined) {
