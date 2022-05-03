@@ -25,19 +25,11 @@ router.get(
   })
 );
 
-router.get(
-  "/spotify/callback",
-  passport.authenticate("spotify", {
-    failureRedirect: `${process.env.CLIENT_URL}/auth-fail`,
-  }),
-  (_req, res) => {
-    res.redirect(process.env.CLIENT_URL);
-  }
-);
+router.get("/spotify/callback", (_req, res) => {
+  res.redirect(process.env.CLIENT_URL);
+});
 
 router.get("/profile", (req, res) => {
-  console.log(req, req.session);
-
   if (req.user === undefined) {
     return res.status(401).json({ message: "Unauthorized" });
   }
@@ -81,9 +73,11 @@ router.get("/refresh", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
-  delete req.user;
+  req.session.destroy((err) => {
+    res.redirect(process.env.CLIENT_URL);
+  });
 
-  res.redirect(process.env.CLIENT_URL);
+  // delete req.session;
 });
 
 module.exports = router;

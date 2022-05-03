@@ -56,12 +56,11 @@ passport.use(
         .where({ spotify_id: profile.id })
         .then((user) => {
           if (user.length) {
-            console.log(user, user[0]);
             knex("users")
               .update({ access_token: accessToken })
               .where({ spotify_id: profile.id })
-              .then(() => {
-                done(null, user[0]);
+              .then((userNew) => {
+                done(null, userNew[0]);
               })
               .catch((err) => {
                 console.log("Error occurred: " + err);
@@ -100,7 +99,7 @@ passport.deserializeUser((userId, done) => {
   knex("users")
     .where({ spotify_id: userId })
     .then((user) => {
-      console.log(user);
+      console.log("deserializing:", user);
       done(null, user[0]);
     })
     .catch((err) => {
