@@ -73,11 +73,8 @@ router.get("/refresh", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
-  req.session.destroy((err) => {
-    res.redirect(process.env.CLIENT_URL);
-  });
-
-  // delete req.session;
+  delete req.session;
+  res.redirect(process.env.CLIENT_URL);
 });
 
 module.exports = router;

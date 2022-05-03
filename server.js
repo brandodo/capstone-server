@@ -90,8 +90,6 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  console.log("serializeUser (user object):", user);
-
   done(null, user.spotify_id);
 });
 
@@ -99,7 +97,6 @@ passport.deserializeUser((userId, done) => {
   knex("users")
     .where({ spotify_id: userId })
     .then((user) => {
-      console.log("deserializing:", user);
       done(null, user[0]);
     })
     .catch((err) => {
