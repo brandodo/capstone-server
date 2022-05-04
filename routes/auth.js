@@ -5,6 +5,7 @@ const passport = require("passport");
 const axios = require("axios");
 const knex = require("knex")(require("../knexfile.js"));
 const SPOTIFY_REFRESH_URL = "https://accounts.spotify.com/api/token";
+const CLIENT_URL = process.env.CLIENT_URL;
 
 require("dotenv").config();
 
@@ -27,21 +28,21 @@ router.get(
 
 router.get(
   "/spotify/callback",
-  passport.authenticate("spotify", { failureRedirect: process.env.CLIENT_URL }),
+  passport.authenticate("spotify", { failureRedirect: CLIENT_URL }),
   (_req, res) => {
-    res.redirect(process.env.CLIENT_URL);
+    res.redirect(CLIENT_URL);
   }
 );
 
 router.get("/profile", (req, res) => {
-  if (req.user === undefined) {
+  if (req.user == null) {
     return res.status(401).json({ message: "Unauthorized" });
   }
   res.status(200).json(req.user);
 });
 
 router.get("/refresh", (req, res) => {
-  if (!req.user) {
+  if (req.user == null) {
     res.status(401).send("No refresh token provided");
   } else {
     const { refresh_token } = req.user;
@@ -69,7 +70,7 @@ router.get("/refresh", (req, res) => {
             res.json(response.data);
           })
           .catch((err) => {
-            console.log(err);
+            return err;
           });
       });
   }
@@ -78,7 +79,7 @@ router.get("/refresh", (req, res) => {
 router.get("/logout", (req, res) => {
   req.logout();
   delete req.session;
-  res.redirect(process.env.CLIENT_URL);
+  res.redirect(CLIENT_URL);
 });
 
 module.exports = router;
