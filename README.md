@@ -1,4 +1,4 @@
-**_ DISCLAIMER: Heroku app is currently not fully functional and only works on Firefox browsers at this time. If you wish the try the live app, please let me know as I will need to add you as a user in order to be able to authenticate successfully. Otherwise, please feel free to clone this repo and follow the setup instructions below _**
+*** DISCLAIMER: Heroku application is in beta testing, please sign up using this form in order to be able to authenticate with your Spotify account. Otherwise, please feel free to clone this repo and follow the setup instructions below _**
 
 # WD Diploma - Capstone Project
 
