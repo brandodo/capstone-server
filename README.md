@@ -50,19 +50,4 @@ As a user:
 - PassportJS
 - MySQL & KnexJS
 
-## 2. Client-Side Implementation
-
-- Site Map
-- Home / Login Screen
-- Song Search
-- Gameplay
-- Game complete screen
-- Screen Details
-
-Please refer to PDF below for full project details:
-
-<object data="./WD Diploma Capstone - aimBeats (Brandon Ong - FINAL).pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="./WD Diploma Capstone - aimBeats (Brandon Ong - FINAL).pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="./WD Diploma Capstone - aimBeats (Brandon Ong - FINAL).pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+Full project details can be found in the presentation [here](https://www.loom.com/share/d7e289c4e6d94f1982ada8ea62019dc7).
