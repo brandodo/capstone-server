@@ -1,4 +1,4 @@
-*** DISCLAIMER: Heroku application is in beta testing, please sign up using this form in order to be able to authenticate with your Spotify account. Otherwise, please feel free to clone this repo and follow the setup instructions below _**
+*** DISCLAIMER: Heroku application is in beta testing, please sign up using this form in order to be able to authenticate with your Spotify account. Otherwise, please feel free to clone this repo and follow the setup instructions below ***
 
 # WD Diploma - Capstone Project
 
