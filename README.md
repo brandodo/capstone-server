@@ -1,5 +1,5 @@
-*** DISCLAIMER: Heroku application is in beta testing, please sign up using this [form](https://docs.google.com/forms/d/e/1FAIpQLSfhkIR5Nrc0SjmyYRsEfd3ncR8uSlWwozJDevHbuJzmpxiC9g/viewform) in order to be able to authenticate with your Spotify account. Otherwise, please feel free to clone this repo and follow the setup instructions below ***
-
+*** DISCLAIMER: Heroku application is in beta testing, please sign up using this [form](https://docs.google.com/forms/d/e/1FAIpQLSfhkIR5Nrc0SjmyYRsEfd3ncR8uSlWwozJDevHbuJzmpxiC9g/viewform) in order to be able to authenticate with your Spotify account. Otherwise, please feel free to clone this repo and follow the setup instructions below ***  
+  
 # WD Diploma - Capstone Project
 
 **Project Title:** aimBeats  
@@ -10,7 +10,32 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Setup Instructions
 
-You will need to create and configure a .env file of your own in order to run this app. Please refer to the sample.env on how that should look. You will also need to clone the client repo, which can be found <a href="https://github.com/brandodo/capstone-client">here</a>
+You will need to clone this repo along with the server repo, which can be found [here](https://github.com/brandodo/capstone-server). Both repos will require a .env, which you will need to create. Please refer to the sample.env files in both repos to see how to configure those.
+
+## Client:  
+```
+git clone https://github.com/brandodo/capstone-client.git  
+```  
+
+## Server:  
+```
+git clone https://github.com/brandodo/capstone-server.git  
+```   
+
+## Install Dependencies:    
+```
+npm i
+```
+
+## Run Client:  
+```
+npm start
+```
+
+## Run Server using nodemon:  
+```
+npm run devStart
+```
 
 ## Project Overview
 
